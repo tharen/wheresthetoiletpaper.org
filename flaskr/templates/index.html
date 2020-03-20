@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head><title>Where is the Toilet Paper</title></head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            // click on button submit
+            $("#submit").on('click', function(){
+                // send ajax
+                $.ajax({
+                    url: '/', // url where to submit the request
+                    type: "POST", // type of action POST || GET
+                    data: $("#postForm").serialize(), // post data || get data
+                    success: function(result) {
+                        // you can see the result from the console
+                        // tab of the developer tools
+                        console.log(result);
+                    },
+                    // error: function(xhr, resp, text) {
+                    //     console.log(xhr, resp, text);
+                    // }
+                });
+            });
+        });
+    
+    </script>
+
+    <body>
+        <form id="postForm" action='' method="POST">
+            User: <input placeholder="User" name='user' value="user"><br>
+            Description: <input placeholder="Find Description" name='post' value="post"><br>
+            Location: <input placeholder="Location" name='location' value="location"><br>
+            Item: <input placeholder="Item" name='item' value="item"><br>
+            <input id="submit" type="button" value="Submit">
+        </form>
+        {% for post in posts %}
+        <div>{{ post[1] + ':' + post[2] + ':' + post[3] + ':' + post[4] + ':' + post[5] }}</div>
+        {% endfor %}
+    </body>
+</html>
