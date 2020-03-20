@@ -4,15 +4,15 @@ import sqlite3 as sql
 ROOT = path.dirname(path.relpath(__file__))
 dbname = 'database.sqlite'
 
-def create_post(user, post, location, item, tags, ats):
+def create_post(user, post, parent, location, item, tags, ats, created, status):
     con = sql.connect(path.join(ROOT, dbname))
     cur = con.cursor()
     cur.execute(
         """insert into post
-                (user, post, location, item, tags, ats)
-                values (?,?,?,?,?,?)
+                (user, post, parent, location, item, tags, ats, created, status)
+                values (?,?,?,?,?,?,?,?,?)
         """
-        , (user, post, location, item, tags, ats)
+        , (user, post, parent, location, item, tags, ats, created, status)
         )
     con.commit()
     con.close()
